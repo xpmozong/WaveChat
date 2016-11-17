@@ -1,5 +1,5 @@
 # WaveChat
-swoole 网页聊天
+swoole 网页聊天，只要是支持WebSocket的浏览器，都可以测试
 
 ### 数据库
 
