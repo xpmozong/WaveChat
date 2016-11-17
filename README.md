@@ -94,9 +94,11 @@ nginx配置
 在浏览器打开 http://127.0.0.1/
 
 登录
+
 ![ScreenShot](https://raw.github.com/xpmozong/WaveChat/master/login.png)
 
 注册
+
 ![ScreenShot](https://raw.github.com/xpmozong/WaveChat/master/regist.png)
 
 聊天
