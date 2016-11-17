@@ -1,0 +1,28 @@
+{
+    "require": {
+        "xpmozong/wavephp2": "*",
+        "matyhtf/swoole_framework": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "client/controllers",
+            "client/models",
+            "server/controllers",
+            "server/models"
+        ]
+    },
+    "config": {  
+        "secure-http": false  
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/swoole/framework"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/xpmozong/wavephp2"
+        }
+    ]
+}

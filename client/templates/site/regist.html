@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>聊天登录</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{%$baseUrl%}/resouce/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{%$baseUrl%}/resouce/css/login.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+            <form class="form-signin" role="form" action="{%$homeUrl%}site/regist" method="post" onsubmit="return checkFrom()">
+                <h2 class="form-signin-heading">Please regist</h2>
+                <input type="text" class="form-control" placeholder="请输入一个昵称" name="username" id="username" onblur="checkUser()" required autofocus>
+                <br>
+                <input type="password" class="form-control" placeholder="请输入密码" name="password" id="password" required>
+                <br>
+                <input type="text" class="form-control" placeholder="请输入头像图片URL" name="avatar" id="avatar" required>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+                <br>
+                <div class="alert alert-danger" id="error_msg" {%if !empty($error_msg)%}style="display: block;"{%else%} style="display: none;"{%/if%}>{%$error_msg%}</div>
+                <br>
+                <a href="{%$homeUrl%}site/login">已有账号？立即登录</a>
+            </form>
+        </div> <!-- /container -->
+    </body>
+    <script type="text/javascript" src="{%$baseUrl%}/resouce/js/jquery.js"></script>
+    <script type="text/javascript">
+
+        function checkFrom() {
+            var username = $("#username").val();
+            if (!username) {
+                $("#error_msg").html('请输入一个昵称');
+                $("#error_msg").show();
+                return false;
+            }
+            var password = $("#password").val();
+            if (!password) {
+                $("#error_msg").html('请输入密码');
+                $("#error_msg").show();
+                return false;
+            }
+            var avatar = $("#avatar").val();
+            if (!avatar) {
+                $("#error_msg").html('请输入头像图片URL');
+                $("#error_msg").show();
+                return false;
+            }
+
+            $("#error_msg").hide();
+            return true;
+        }
+
+        function checkUser() {
+            var username = $("#username").val();
+            if (!username) {
+                return false;
+            }
+            $.getJSON("{%$homeUrl%}site/checkusername?username="+username, function(json){
+                if (json.code == 0) {
+                    $("#error_msg").html('');
+                    $("#error_msg").hide();
+                }else{
+                    $("#error_msg").html('用户已存在');
+                    $("#error_msg").show();
+                }
+            });
+        }
+    </script>
+</html>
