@@ -1,30 +1,30 @@
 # WaveChat
-swoole 网页聊天，只要是支持WebSocket的浏览器，都可以测试
+swoole 网页聊天，只要是支持WebSocket的浏览器，都可以测试，参照webim。
 
 ### 数据库
 
 **用户表**
 
     CREATE TABLE `k_users` (
-      `user_id` int(11) NOT NULL AUTO_INCREMENT,
-      `username` varchar(100) DEFAULT NULL,
-      `avatar` varchar(100) DEFAULT NULL,
-      `password` varchar(32) DEFAULT NULL,
-      `add_time` bigint(15) DEFAULT NULL,
-      PRIMARY KEY (`user_id`)
+        `user_id` int(11) NOT NULL AUTO_INCREMENT,
+        `username` varchar(100) DEFAULT NULL,
+        `avatar` varchar(100) DEFAULT NULL,
+        `password` varchar(32) DEFAULT NULL,
+        `add_time` bigint(15) DEFAULT NULL,
+        PRIMARY KEY (`user_id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=100001 DEFAULT CHARSET=utf8;
 
 **消息表**
 
     CREATE TABLE `k_messages` (
-      `id` bigint(20) NOT NULL AUTO_INCREMENT,
-      `from_id` bigint(20) DEFAULT NULL,
-      `to_id` bigint(20) DEFAULT NULL,
-      `channal` bigint(20) DEFAULT NULL,
-      `type` varchar(10) DEFAULT NULL,
-      `content` text,
-      `add_time` bigint(15) DEFAULT NULL,
-      PRIMARY KEY (`id`)
+        `id` bigint(20) NOT NULL AUTO_INCREMENT,
+        `from_id` bigint(20) DEFAULT NULL,
+        `to_id` bigint(20) DEFAULT NULL,
+        `channal` bigint(20) DEFAULT NULL,
+        `type` varchar(10) DEFAULT NULL,
+        `content` text,
+        `add_time` bigint(15) DEFAULT NULL,
+        PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
     
 ### 配置文件
