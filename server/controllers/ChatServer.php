@@ -70,6 +70,7 @@ HTML;
             //将下线消息发送给所有人
             $this->broadcastJson($client_id, $resMsg);
         }
+        unset($this->users[$client_id]);
         $this->log("onOffline: " . $client_id);
     }
 
@@ -166,7 +167,7 @@ HTML;
                 );
 
                 //把会话存起来
-                $this->users[] = $client_id;
+                $this->users[$client_id] = $client_id;
 
                 $this->store->login($client_id, $resMsg);
                 $this->sendJson($client_id, $resMsg);
