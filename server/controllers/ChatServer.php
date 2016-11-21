@@ -168,7 +168,7 @@ HTML;
                 );
 
                 //把会话存起来
-                $this->users[$client_id] = $resMsg;
+                $this->users[] = $client_id;
 
                 $this->store->login($client_id, $resMsg);
                 $this->sendJson($client_id, $resMsg);
@@ -303,7 +303,7 @@ HTML;
 
     function broadcast($current_session_id, $msg)
     {
-        foreach ($this->users as $client_id => $name)
+        foreach ($this->users as $key => $client_id)
         {
             if ($current_session_id != $client_id)
             {
