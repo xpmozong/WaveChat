@@ -119,7 +119,6 @@ HTML;
             'cmd' => 'getOnline',
         );
         $info = $this->store->getUsers(array_slice($this->users, 0, 100));
-        $resMsg['users'] = $users;
         $resMsg['list'] = $info;
         $this->sendJson($client_id, $resMsg);
     }
