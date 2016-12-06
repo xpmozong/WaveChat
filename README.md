@@ -42,7 +42,57 @@ swoole 网页聊天，只要是支持WebSocket的浏览器，都可以测试，�
 执行
 
     php server.php
-    
+
+永久执行，创建一个shell文件
+
+    #!/bin/bash
+    bigdir=/data/www/wwwroot/wavechat
+    file=server.php
+    filepath=$bigdir/server/$file
+    logfile=$bigdir/logs/server.log
+
+    case $1 in
+        start)
+            nohup php $filepath > $logfile &
+            echo "服务已启动..."
+            sleep 1
+        ;;
+        stop)
+            for i in `ps -ef |grep $file|awk '{print $2}'`
+                do
+                    kill -9 $i > /dev/null 2>&1
+                done
+            echo "服务已停止..."
+            sleep 1
+        ;;
+        restart)
+            for i in `ps -ef |grep $file|awk '{print $2}'`
+                do
+                    kill -9 $i > /dev/null 2>&1
+                done
+            echo "服务已停止..."
+            sleep 1
+            
+            nohup php $filepath > $logfile &
+
+            echo "服务已重启..."
+            sleep 1
+        ;;
+        *)
+            echo "$0 {start|stop|restart}"
+            exit 4
+        ;;
+    esac
+
+所以用shell启动php文件，让php文件后端执行
+
+    # 启动
+    sh server.sh start
+    # 重启
+    sh server.sh restart
+    # 关闭
+    sh server.sh stop
+
 记得要将目录设为可写权限哦
 
 **客户端**
